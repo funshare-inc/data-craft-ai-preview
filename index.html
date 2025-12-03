@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DataCraft AI | Intelligent Data Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#f5f3ff',
+                100: '#ede9fe',
+                200: '#ddd6fe',
+                300: '#c4b5fd',
+                400: '#a78bfa',
+                500: '#8b5cf6',
+                600: '#7c3aed',
+                700: '#6d28d9',
+                800: '#5b21b6',
+                900: '#4c1d95',
+                950: '#2e1065',
+              },
+              teal: {
+                50: '#f0fdfa',
+                100: '#ccfbf1',
+                400: '#2dd4bf',
+                500: '#14b8a6',
+                600: '#0d9488',
+                900: '#134e4a',
+              },
+              accent: {
+                500: '#f43f5e', // Rose for highlights
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              mono: ['Fira Code', 'monospace'],
+            },
+            animation: {
+              'draw-h': 'drawH 1s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+              'draw-v': 'drawV 1s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+              'fade-in': 'fadeIn 0.6s ease-out forwards',
+              'float': 'float 6s ease-in-out infinite',
+              'scan': 'scan 3s ease-in-out infinite',
+              'cursor-drag': 'cursorDrag 4s ease-in-out infinite',
+              'widget-appear': 'widgetAppear 4s ease-in-out infinite',
+              // Simulation animations
+              'sim-cursor': 'simCursor 8s ease-in-out infinite',
+              'sim-draw-h': 'simDrawH 8s ease-in-out infinite',
+              'sim-draw-v': 'simDrawV 8s ease-in-out infinite',
+              'sim-pop-1': 'simPop 8s ease-out infinite 2s',
+              'sim-pop-2': 'simPop 8s ease-out infinite 3.5s',
+              'sim-pop-3': 'simPop 8s ease-out infinite 5s',
+              'typewriter-1': 'typewriter 1.5s steps(20, end) infinite 2s',
+              'typewriter-2': 'typewriter 1.5s steps(20, end) infinite 4s',
+              'data-label-1': 'fadeInOut 8s linear infinite 0s',
+              'data-label-2': 'fadeInOut 8s linear infinite 3.5s',
+              // View Cycling for DataView Builder (4 Views)
+              'view-cycle-1': 'viewCycle1 12s infinite',
+              'view-cycle-2': 'viewCycle2 12s infinite',
+              'view-cycle-3': 'viewCycle3 12s infinite',
+              'view-cycle-4': 'viewCycle4 12s infinite',
+              // Specific Builder Simulations
+              'layout-shift': 'layoutShift 4s ease-in-out infinite',
+              'form-drop': 'formDrop 4s ease-in-out infinite',
+              'relation-link': 'relationLink 4s ease-in-out infinite',
+              'pulse-node': 'pulseNode 4s ease-in-out infinite',
+            },
+            keyframes: {
+              drawH: {
+                '0%': { width: '0%', opacity: '0' },
+                '100%': { width: '100%', opacity: '1' },
+              },
+              drawV: {
+                '0%': { height: '0%', opacity: '0' },
+                '100%': { height: '100%', opacity: '1' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
+              scan: {
+                '0%, 100%': { top: '5%', opacity: '0.5' },
+                '50%': { top: '85%', opacity: '1' },
+              },
+              cursorDrag: {
+                '0%': { transform: 'translate(0, 0)' },
+                '15%': { transform: 'translate(0, 0) scale(0.9)' }, /* Grab */
+                '40%': { transform: 'translate(140px, 40px)' }, /* Move */
+                '50%': { transform: 'translate(140px, 40px) scale(0.9)' }, /* Drop */
+                '60%': { transform: 'translate(140px, 40px) scale(1)' },
+                '80%': { transform: 'translate(180px, 100px)', opacity: '1' },
+                '100%': { transform: 'translate(200px, 120px)', opacity: '0' }
+              },
+              widgetAppear: {
+                '0%, 45%': { opacity: '0', transform: 'scale(0.9)' },
+                '50%': { opacity: '1', transform: 'scale(1)' },
+                '100%': { opacity: '1', transform: 'scale(1)' }
+              },
+              // Simulation Keyframes
+              simCursor: {
+                '0%': { top: '50%', left: '50%', opacity: '0' },
+                '5%': { opacity: '1' },
+                '10%': { top: '50%', left: '50%', transform: 'scale(1)' },
+                '20%': { top: '25%', left: '25%' }, 
+                '25%': { transform: 'scale(0.9)' }, 
+                '30%': { transform: 'scale(1)' },
+                '35%': { top: '25%', left: '25%' }, 
+                '45%': { top: '25%', left: '75%' }, 
+                '50%': { transform: 'scale(0.9)' }, 
+                '55%': { transform: 'scale(1)' },
+                '60%': { top: '25%', left: '75%' }, 
+                '70%': { top: '65%', left: '50%' }, 
+                '75%': { transform: 'scale(0.9)' }, 
+                '80%': { transform: 'scale(1)' },
+                '90%': { top: '90%', left: '90%', opacity: '1' },
+                '100%': { top: '100%', left: '100%', opacity: '0' }
+              },
+              simDrawH: {
+                '0%, 15%': { width: '0%', opacity: '0' },
+                '25%, 90%': { width: '100%', opacity: '1' },
+                '100%': { width: '0%', opacity: '0' }
+              },
+              simDrawV: {
+                '0%, 35%': { height: '0%', opacity: '0' },
+                '45%, 90%': { height: '100%', opacity: '1' },
+                '100%': { height: '0%', opacity: '0' }
+              },
+              simPop: {
+                '0%': { opacity: '0', transform: 'scale(0.9) translateY(10px)' },
+                '10%, 80%': { opacity: '1', transform: 'scale(1) translateY(0)' },
+                '100%': { opacity: '0', transform: 'scale(0.9) translateY(10px)' }
+              },
+              typewriter: {
+                '0%': { width: '0%' },
+                '100%': { width: '100%' }
+              },
+              fadeInOut: {
+                '0%': { opacity: '0', display: 'none' },
+                '20%': { opacity: '1', display: 'block' },
+                '30%': { opacity: '1', display: 'block' },
+                '40%': { opacity: '0', display: 'none' },
+                '100%': { opacity: '0', display: 'none' }
+              },
+              // DataView Builder Cycling (4 Views)
+              // Each view gets ~25% of the 12s cycle (3s)
+              viewCycle1: { // Grid
+                '0%, 20%': { opacity: '1', transform: 'scale(1)' },
+                '25%, 100%': { opacity: '0', transform: 'scale(0.98)' },
+              },
+              viewCycle2: { // Gantt
+                '0%, 20%': { opacity: '0', transform: 'scale(0.98)' },
+                '25%, 45%': { opacity: '1', transform: 'scale(1)' },
+                '50%, 100%': { opacity: '0', transform: 'scale(0.98)' },
+              },
+              viewCycle3: { // Kanban
+                '0%, 45%': { opacity: '0', transform: 'scale(0.98)' },
+                '50%, 70%': { opacity: '1', transform: 'scale(1)' },
+                '75%, 100%': { opacity: '0', transform: 'scale(0.98)' },
+              },
+              viewCycle4: { // Chart
+                '0%, 70%': { opacity: '0', transform: 'scale(0.98)' },
+                '75%, 95%': { opacity: '1', transform: 'scale(1)' },
+                '100%': { opacity: '0', transform: 'scale(0.98)' },
+              },
+              // Builder Simulations
+              layoutShift: {
+                '0%, 10%': { width: '30%' }, // Start small
+                '20%, 80%': { width: '100%' }, // Expand
+                '90%, 100%': { width: '30%' } // Shrink back
+              },
+              formDrop: {
+                '0%': { transform: 'translate(40px, -20px)', opacity: '0' },
+                '20%': { transform: 'translate(0, 0)', opacity: '1' }, // Drop
+                '80%': { transform: 'translate(0, 0)', opacity: '1' },
+                '100%': { transform: 'translate(40px, -20px)', opacity: '0' }
+              },
+              relationLink: {
+                '0%, 10%': { width: '0%', opacity: '0' },
+                '30%, 80%': { width: '100%', opacity: '1' },
+                '100%': { width: '0%', opacity: '0' }
+              },
+              pulseNode: {
+                 '0%, 100%': { transform: 'scale(1)', boxShadow: '0 0 0 0 rgba(124, 58, 237, 0.4)' },
+                 '50%': { transform: 'scale(1.1)', boxShadow: '0 0 0 10px rgba(124, 58, 237, 0)' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #ffffff; /* White background */
+        color: #111827; /* Gray-900 text */
+        scroll-behavior: smooth;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      }
+      .grid-bg {
+        background-size: 40px 40px;
+        background-image: linear-gradient(to right, rgba(139, 92, 246, 0.08) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(139, 92, 246, 0.08) 1px, transparent 1px);
+      }
+      /* Simulation specific styles */
+      .sim-card {
+        background: white;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+      }
+      .sim-tooltip-text {
+        overflow: hidden;
+        white-space: nowrap;
+        display: inline-block;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
