@@ -2,70 +2,24 @@ import express from "express";
 import { createServer as createViteServer } from "vite";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
-import helmet from "helmet";
-import cors from "cors";
-import rateLimit from "express-rate-limit";
-import sanitizeHtml from "sanitize-html";
 
 dotenv.config();
-
-/**
- * SEC-SRV-AIP (me-393-zone-03 012):
- * ai-preview 서버 보안 강화 — helmet + CORS whitelist + rate-limit + body-size-limit + XSS sanitize
- */
 
 async function startServer() {
   const app = express();
   const PORT = Number(process.env.PORT) || 3000;
 
-  // 1. helmet — 기본 보안 헤더 세트 (X-Frame-Options, X-Content-Type-Options, CSP 등)
-  app.use(helmet());
-
-  // 2. CORS whitelist — 허용 오리진만 명시적 통과. 미설정 시 동일 오리진만 허용.
-  const CORS_ORIGIN_WHITELIST = (process.env.CORS_ORIGIN_WHITELIST || "")
-    .split(",")
-    .map((s) => s.trim())
-    .filter((s) => s.length > 0);
-  app.use(
-    cors({
-      origin: (origin, callback) => {
-        // Same-origin 또는 Postman/curl 등 origin 없음
-        if (!origin) return callback(null, true);
-        if (CORS_ORIGIN_WHITELIST.length === 0) {
-          return callback(null, false); // whitelist 미설정 시 모든 cross-origin 차단
-        }
-        if (CORS_ORIGIN_WHITELIST.includes(origin)) return callback(null, true);
-        return callback(new Error(`CORS blocked origin: ${origin}`));
-      },
-      credentials: true,
-    })
-  );
-
-  // 3. body-size-limit — 10kb 초과 페이로드 거부 (DoS 방어)
-  app.use(express.json({ limit: "10kb" }));
-
-  // 4. rate-limit — 문의 폼 per-IP 15분당 10회
-  const contactLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000,
-    max: 10,
-    standardHeaders: true,
-    legacyHeaders: false,
-    message: { success: false, message: "요청이 너무 많습니다. 잠시 후 다시 시도해주세요." },
-  });
+  app.use(express.json());
 
   // API Route for Contact Form
-  app.post("/api/contact", contactLimiter, async (req, res) => {
+  app.post("/api/contact", async (req, res) => {
     const { name, email, subject, message } = req.body;
 
-    // SEC-SRV-AIP: 사용자 입력 XSS sanitize — 메일 본문 HTML 삽입 안전성 보장
-    const safeName = sanitizeHtml(String(name ?? ""), { allowedTags: [], allowedAttributes: {} });
-    const safeEmail = sanitizeHtml(String(email ?? ""), { allowedTags: [], allowedAttributes: {} });
-    const safeSubject = sanitizeHtml(String(subject ?? ""), { allowedTags: [], allowedAttributes: {} });
-    const safeMessage = sanitizeHtml(String(message ?? ""), { allowedTags: [], allowedAttributes: {} });
-
-    console.log("Received contact form submission:", { name: safeName, email: safeEmail, subject: safeSubject });
+    console.log("Received contact form submission:", { name, email, subject, message });
 
     try {
+      // SMTP Configuration
+      // In a real scenario, you would use process.env.SMTP_HOST, etc.
       const transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST || "smtp.ethereal.email",
         port: Number(process.env.SMTP_PORT) || 587,
@@ -77,21 +31,22 @@ async function startServer() {
       });
 
       const mailOptions = {
-        from: `"${safeName}" <${safeEmail}>`,
+        from: `"${name}" <${email}>`,
         to: "help@funshare.co.kr",
-        subject: `[문의] ${safeSubject}`,
-        text: `성함: ${safeName}\n이메일: ${safeEmail}\n\n내용:\n${safeMessage}`,
+        subject: `[문의] ${subject}`,
+        text: `성함: ${name}\n이메일: ${email}\n\n내용:\n${message}`,
         html: `
           <h3>새로운 문의가 접수되었습니다.</h3>
-          <p><strong>성함:</strong> ${safeName}</p>
-          <p><strong>이메일:</strong> ${safeEmail}</p>
-          <p><strong>제목:</strong> ${safeSubject}</p>
+          <p><strong>성함:</strong> ${name}</p>
+          <p><strong>이메일:</strong> ${email}</p>
+          <p><strong>제목:</strong> ${subject}</p>
           <br/>
           <p><strong>내용:</strong></p>
-          <p>${safeMessage.replace(/\n/g, "<br/>")}</p>
+          <p>${message.replace(/\n/g, "<br/>")}</p>
         `,
       };
 
+      // If no SMTP credentials, we just simulate success for the demo/test
       if (!process.env.SMTP_USER) {
         console.log("SMTP credentials missing. Simulating email send to help@funshare.co.kr");
         return res.json({ success: true, message: "Email sent (simulated)" });
