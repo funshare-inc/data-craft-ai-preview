@@ -1,0 +1,22 @@
+name: PR 검사
+on:
+  pull_request:
+    branches: [i-test, verification]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pr-check-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
