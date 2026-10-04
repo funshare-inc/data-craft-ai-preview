@@ -1,7 +1,7 @@
 name: PR 검사
 on:
   pull_request:
-    branches: [i-test, verification]
+    branches: [i-test, staging]
   workflow_dispatch:
 permissions:
   contents: read
