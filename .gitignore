@@ -1,6 +1,7 @@
 .DS_Store
 dist/
 node_modules/
+.worktrees/
 
 # SEC-DC-011 / SEC-CONFIG-16: 환경 변수 파일 tracking 차단 (.env.example 은 placeholder 로 예외)
 .env
