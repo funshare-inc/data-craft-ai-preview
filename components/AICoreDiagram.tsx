@@ -89,7 +89,7 @@ export const AICoreDiagram: React.FC<AICoreDiagramProps> = ({ language }) => {
           .animate-builder-cursor { animation: builder-cursor 8s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
           @keyframes floating-widget { 0%, 25% { transform: translate(0, 0) scale(1); opacity: 0; } 26% { opacity: 1; transform: translate(0, 0) scale(1.08); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); } 50% { transform: translate(115px, -25px) scale(1.08); opacity: 1; } 55% { transform: translate(115px, -25px) scale(1); opacity: 0; } 100% { opacity: 0; } }
           .animate-floating-widget { animation: floating-widget 8s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
-          @keyframes drop-pulse-bg { 0%, 54% { background: transparent; border-color: #e2e8f0; } 55% { background: #eff6ff; border-color: #3b82f6; transform: scale(1.02); } 65% { background: white; border-color: #e2e8f0; transform: scale(1); } 100% { background: white; border-color: #e2e8f0; } }
+          @keyframes drop-pulse-bg { 0%, 54% { background: transparent; border-color: var(--ai-e2e8f0); } 55% { background: var(--ai-eff6ff); border-color: var(--ai-3b82f6); transform: scale(1.02); } 65% { background: white; border-color: var(--ai-e2e8f0); transform: scale(1); } 100% { background: white; border-color: var(--ai-e2e8f0); } }
           .animate-drop-pulse-bg { animation: drop-pulse-bg 8s ease infinite; }
         `}
       </style>
@@ -136,7 +136,7 @@ export const AICoreDiagram: React.FC<AICoreDiagramProps> = ({ language }) => {
               <div className="mb-8 relative rounded-[2rem] overflow-hidden aspect-[16/10] border border-white shadow-inner bg-slate-50 group/img">
                 {item.effect === 'scan' && (
                   <div className="absolute inset-0 bg-white p-5 select-none overflow-hidden">
-                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:20px_20px] opacity-40" />
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--ai-f1f5f9)_1px,transparent_1px),linear-gradient(to_bottom,var(--ai-f1f5f9)_1px,transparent_1px)] bg-[size:20px_20px] opacity-40" />
                     <div className="relative h-full w-full rounded-xl overflow-hidden border border-slate-100 bg-slate-50/50">
                       <img src={item.imageUrl} className="w-full h-full object-cover opacity-20 grayscale" alt="scan-bg" />
                       <div className="absolute top-0 left-0 w-full h-[2px] bg-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.5)] animate-scanline z-20" />
@@ -161,7 +161,7 @@ export const AICoreDiagram: React.FC<AICoreDiagramProps> = ({ language }) => {
                 )}
                 {item.effect === 'connect' && (
                   <div className="absolute inset-0 bg-white p-5 select-none overflow-hidden">
-                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:20px_20px] opacity-40" />
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--ai-f1f5f9)_1px,transparent_1px),linear-gradient(to_bottom,var(--ai-f1f5f9)_1px,transparent_1px)] bg-[size:20px_20px] opacity-40" />
                     <div className="relative h-full w-full rounded-xl overflow-hidden border border-slate-100 bg-slate-50/50">
                       <img src={item.imageUrl} className="w-full h-full object-cover opacity-10 grayscale" alt="connect-bg" />
                       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-white rounded-3xl border border-indigo-100 shadow-xl flex flex-col items-center justify-center z-30 animate-pulse">
@@ -180,7 +180,7 @@ export const AICoreDiagram: React.FC<AICoreDiagramProps> = ({ language }) => {
                 )}
                 {item.effect === 'builder' && (
                   <div className="absolute inset-0 bg-white p-5 select-none overflow-hidden">
-                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:20px_20px] opacity-40" />
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--ai-f1f5f9)_1px,transparent_1px),linear-gradient(to_bottom,var(--ai-f1f5f9)_1px,transparent_1px)] bg-[size:20px_20px] opacity-40" />
                     <div className="relative h-full w-full flex flex-col gap-3">
                       <div className="h-7 w-full bg-slate-50 border border-slate-200 rounded-lg flex items-center px-2 justify-between shrink-0">
                          <div className="flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-slate-300" /><div className="w-1.5 h-1.5 rounded-full bg-slate-300" /></div>
