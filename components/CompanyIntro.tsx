@@ -38,7 +38,7 @@ export const CompanyIntro: React.FC<CompanyIntroProps> = ({ language }) => {
       
       {/* 1. Hero: Strategic Vision & Manifesto */}
       <section className="relative min-h-[95vh] flex items-center px-8 lg:px-24 overflow-hidden border-b border-slate-50">
-        <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:40px_40px] opacity-15" />
+        <div className="absolute inset-0 bg-[radial-gradient(var(--ai-e2e8f0)_1px,transparent_1px)] [background-size:40px_40px] opacity-15" />
         
         <div className="max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center relative z-10">
           <div className="lg:col-span-7 space-y-12 animate-in fade-in slide-in-from-left duration-1000">
