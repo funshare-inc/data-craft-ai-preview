@@ -28,13 +28,13 @@ interface FeatureGridProps {
 // Layout Builder 애니메이션 (카메라 뷰포트 + 마우스 드래그 시뮬레이션)
 const LayoutBuilderAnimation: React.FC = () => {
   return (
-    <div className="relative w-full h-full bg-[#f1f3f5] overflow-hidden group/layout select-none font-sans rounded-2xl border border-slate-200 shadow-inner">
+    <div className="relative w-full h-full bg-[var(--ai-f1f3f5)] overflow-hidden group/layout select-none font-sans rounded-2xl border border-slate-200 shadow-inner">
       {/* Camera Viewport Wrapper */}
       <div className="w-full h-full animate-[layout-v3-camera_15s_infinite] origin-center">
         {/* High Resolution Scale Wrapper */}
         <div className="w-[118%] h-[118%] -translate-x-[7.5%] -translate-y-[7.5%] scale-[0.85] bg-white flex origin-center border-[2px] border-slate-400 shadow-2xl overflow-hidden rounded-3xl">
           {/* 1. Left Sidebar (Navigation) */}
-          <div className="w-[16%] bg-[#f8f9fa] border-r border-slate-200 flex flex-col shrink-0">
+          <div className="w-[16%] bg-[var(--ai-f8f9fa)] border-r border-slate-200 flex flex-col shrink-0">
             <div className="p-4 border-b border-slate-200 flex items-center gap-2">
               <div className="w-6 h-6 bg-indigo-600 rounded flex items-center justify-center">
                 <Layout size={14} className="text-white" />
@@ -60,7 +60,7 @@ const LayoutBuilderAnimation: React.FC = () => {
           </div>
 
           {/* 2. Main Content Area */}
-          <div className="flex-1 flex flex-col min-w-0 bg-[#f1f3f5]">
+          <div className="flex-1 flex flex-col min-w-0 bg-[var(--ai-f1f3f5)]">
             {/* Top Bar */}
             <div className="h-12 bg-white border-b border-slate-200 flex items-center justify-between px-6 shrink-0">
               <div className="flex flex-col">
@@ -303,28 +303,28 @@ const LayoutBuilderAnimation: React.FC = () => {
 
         @keyframes layout-v3-ripple { 0%, 6%, 8%, 13%, 15%, 19%, 21%, 31%, 33%, 39%, 41%, 51%, 53%, 61%, 63%, 71%, 73%, 91%, 93%, 100% { transform: scale(0); opacity: 0; } 7%, 14%, 20%, 32%, 40%, 52%, 62%, 72%, 92% { transform: scale(1.5); opacity: 1; } }
         
-        @keyframes layout-v3-add-btn { 0%, 6% { background: transparent; } 7%, 100% { background: #f8fafc; } }
+        @keyframes layout-v3-add-btn { 0%, 6% { background: transparent; } 7%, 100% { background: var(--ai-f8fafc); } }
         @keyframes layout-v3-drag-handle { 0%, 12% { opacity: 0; transform: translateY(-50%) scale(0.5); } 14%, 25% { opacity: 1; transform: translateY(-50%) scale(1); } 26%, 100% { opacity: 0; } }
         @keyframes layout-v3-canvas-left { 0%, 12% { width: 25%; } 18%, 100% { width: 35%; } }
         @keyframes layout-v3-canvas-main { 0%, 15% { transform: translateY(0); } 20%, 100% { transform: translateY(5px); } }
         
         @keyframes layout-v3-widget-menu { 0%, 32% { opacity: 0; transform: translate(-50%, -45%) scale(0.95); } 35%, 42% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 44%, 100% { opacity: 0; transform: translate(-50%, -55%) scale(0.9); } }
-        @keyframes layout-v3-widget-select { 0%, 38% { background: white; color: inherit; } 40%, 100% { background: #4f46e5; color: white; } }
+        @keyframes layout-v3-widget-select { 0%, 38% { background: white; color: inherit; } 40%, 100% { background: var(--ai-4f46e5); color: white; } }
         
-        @keyframes layout-v3-tab-settings { 0%, 62% { color: #4f46e5; } 64%, 100% { color: #94a3b8; } }
+        @keyframes layout-v3-tab-settings { 0%, 62% { color: var(--ai-4f46e5); } 64%, 100% { color: var(--ai-94a3b8); } }
         @keyframes layout-v3-tab-settings-line { 0%, 62% { opacity: 1; } 64%, 100% { opacity: 0; } }
-        @keyframes layout-v3-tab-design { 0%, 62% { color: #94a3b8; } 64%, 100% { color: #4f46e5; } }
+        @keyframes layout-v3-tab-design { 0%, 62% { color: var(--ai-94a3b8); } 64%, 100% { color: var(--ai-4f46e5); } }
         @keyframes layout-v3-tab-design-line { 0%, 62% { opacity: 0; } 64%, 100% { opacity: 1; } }
         
         @keyframes layout-v3-content-settings { 0%, 62% { opacity: 1; transform: translateX(0); } 64%, 100% { opacity: 0; transform: translateX(-20px); } }
         @keyframes layout-v3-content-design { 0%, 62% { opacity: 0; transform: translateX(20px); } 64%, 100% { opacity: 1; transform: translateX(0); pointer-events: auto; } }
         
-        @keyframes layout-v3-setting-change { 0%, 52% { background: white; } 54%, 100% { background: #f5f3ff; border-color: #4f46e5; } }
+        @keyframes layout-v3-setting-change { 0%, 52% { background: white; } 54%, 100% { background: var(--ai-f5f3ff); border-color: var(--ai-4f46e5); } }
         @keyframes layout-v3-padding-val { 0%, 72% { opacity: 0; } 75%, 100% { opacity: 1; } }
         @keyframes layout-v3-padding-box { 0%, 72% { padding: 4px; } 75%, 100% { padding: 12px; } }
         @keyframes layout-v3-design-overlay { 0%, 72% { opacity: 0; } 75%, 100% { opacity: 1; } }
         
-        @keyframes layout-v3-save-btn { 0%, 92% { transform: scale(1); } 93%, 97% { transform: scale(0.95); background: #4f46e5; } 98%, 100% { transform: scale(1); } }
+        @keyframes layout-v3-save-btn { 0%, 92% { transform: scale(1); } 93%, 97% { transform: scale(0.95); background: var(--ai-4f46e5); } 98%, 100% { transform: scale(1); } }
       `}</style>
     </div>
   );
@@ -337,7 +337,7 @@ const FormBuilderAnimation: React.FC = () => {
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100 bg-white shrink-0">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-[#6366f1] rounded-lg flex items-center justify-center shadow-md shadow-indigo-100">
+          <div className="w-8 h-8 bg-[var(--ai-6366f1)] rounded-lg flex items-center justify-center shadow-md shadow-indigo-100">
             <div className="w-4 h-4 border-[1.5px] border-white rounded-sm flex flex-col items-center justify-center gap-0.5">
               <div className="w-2 h-[1px] bg-white rounded-full" />
               <div className="w-2 h-[1px] bg-white rounded-full" />
@@ -509,9 +509,9 @@ const FormBuilderAnimation: React.FC = () => {
 
       <style>{`
         @keyframes form-v8-select {
-          0%, 12% { border-color: #e2e8f0; background: white; }
-          13%, 35% { border-color: #6366f1; background: #eef2ff; }
-          36%, 100% { border-color: #e2e8f0; background: white; }
+          0%, 12% { border-color: var(--ai-e2e8f0); background: white; }
+          13%, 35% { border-color: var(--ai-6366f1); background: var(--ai-eef2ff); }
+          36%, 100% { border-color: var(--ai-e2e8f0); background: white; }
         }
         @keyframes form-v8-select-text {
           0%, 28% { transform: translateY(0); }
@@ -527,9 +527,9 @@ const FormBuilderAnimation: React.FC = () => {
           48%, 100% { transform: translateY(-50%); }
         }
         @keyframes form-v8-btn {
-          0%, 58% { background: #94a3b8; transform: scale(1); }
-          60%, 65% { background: #4f46e5; transform: scale(0.95); }
-          66%, 100% { background: #4f46e5; transform: scale(1); }
+          0%, 58% { background: var(--ai-94a3b8); transform: scale(1); }
+          60%, 65% { background: var(--ai-4f46e5); transform: scale(0.95); }
+          66%, 100% { background: var(--ai-4f46e5); transform: scale(1); }
         }
         @keyframes form-v8-new-widget {
           0%, 62% { opacity: 0; transform: translateY(15px); }
@@ -564,10 +564,10 @@ const UltimateViewAnimation: React.FC = () => {
   ];
 
   const pieData = [
-    { name: 'Dev', value: 45, color: '#4f46e5' },
-    { name: 'Design', value: 25, color: '#10b981' },
-    { name: 'Marketing', value: 15, color: '#f59e0b' },
-    { name: 'Sales', value: 15, color: '#ef4444' },
+    { name: 'Dev', value: 45, color: 'var(--ai-4f46e5)' },
+    { name: 'Design', value: 25, color: 'var(--ai-10b981)' },
+    { name: 'Marketing', value: 15, color: 'var(--ai-f59e0b)' },
+    { name: 'Sales', value: 15, color: 'var(--ai-ef4444)' },
   ];
   
   // 자동 탭 전환 및 타이머 로직
@@ -678,7 +678,7 @@ const UltimateViewAnimation: React.FC = () => {
       </div>
 
       {/* View Content */}
-      <div className="flex-1 relative overflow-hidden bg-[#F8FAFC]">
+      <div className="flex-1 relative overflow-hidden bg-[var(--ai-f8fafc)]">
         <AnimatePresence mode="wait">
           {activeTab === 'grid' && (
             <motion.div key="grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 flex flex-col">
@@ -774,7 +774,7 @@ const UltimateViewAnimation: React.FC = () => {
                     <div key={idx} className="text-[9px] font-black text-slate-600 truncate flex items-center gap-1.5"><ChevronRight size={10} className="text-slate-300" />{t}</div>
                   ))}
                 </div>
-                <div className="flex-1 relative bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px)] bg-[size:5%_100%] p-2 space-y-4">
+                <div className="flex-1 relative bg-[linear-gradient(to_right,var(--ai-f1f5f9)_1px,transparent_1px)] bg-[size:5%_100%] p-2 space-y-4">
                   <div className="h-3 w-[30%] bg-indigo-500 rounded-full" />
                   <div className="h-3 w-[40%] ml-[20%] bg-emerald-500 rounded-full" />
                   <div className="h-3 w-[50%] ml-[40%] bg-blue-500 rounded-full" />
@@ -840,7 +840,7 @@ const UltimateViewAnimation: React.FC = () => {
                   <h6 className="text-[8px] font-black text-slate-800 uppercase mb-4">리소스 배분</h6>
                   <div className="flex-1 flex items-center justify-center">
                     <ResponsiveContainer width="100%" height="100%">
-                      <PieChart><Pie data={pieData} innerRadius={30} outerRadius={45} paddingAngle={2} dataKey="value">{pieData.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.color} />)}</Pie></PieChart>
+                      <PieChart><Pie data={pieData} innerRadius={30} outerRadius={45} paddingAngle={2} dataKey="value">{pieData.map((entry, index) => <Cell key={`cell-${index}`} style={{ fill: entry.color }} />)}</Pie></PieChart>
                     </ResponsiveContainer>
                   </div>
                   <div className="mt-2 space-y-1">
@@ -854,10 +854,10 @@ const UltimateViewAnimation: React.FC = () => {
                   <div className="flex-1">
                     <ResponsiveContainer width="100%" height="100%">
                       <AreaChart data={[{n:'1',s:60,t:40},{n:'2',s:45,t:65},{n:'3',s:75,t:50},{n:'4',s:30,t:80},{n:'5',s:90,t:60}]}>
-                        <defs><linearGradient id="cScore" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#6366f1" stopOpacity={0.1}/><stop offset="95%" stopColor="#6366f1" stopOpacity={0}/></linearGradient></defs>
-                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                        <Area type="monotone" dataKey="s" stroke="#6366f1" fill="url(#cScore)" strokeWidth={2} />
-                        <Area type="monotone" dataKey="t" stroke="#10b981" fillOpacity={0} strokeWidth={2} />
+                        <defs><linearGradient id="cScore" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" style={{ stopColor: 'var(--ai-6366f1)' }} stopOpacity={0.1}/><stop offset="95%" style={{ stopColor: 'var(--ai-6366f1)' }} stopOpacity={0}/></linearGradient></defs>
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} style={{ stroke: 'var(--ai-f1f5f9)' }} />
+                        <Area type="monotone" dataKey="s" style={{ stroke: 'var(--ai-6366f1)' }} fill="url(#cScore)" strokeWidth={2} />
+                        <Area type="monotone" dataKey="t" style={{ stroke: 'var(--ai-10b981)' }} fillOpacity={0} strokeWidth={2} />
                       </AreaChart>
                     </ResponsiveContainer>
                   </div>
@@ -944,7 +944,7 @@ const RelationBuilderAnimation: React.FC = () => {
   const isClicking = [20, 21, 22, 45, 46, 47, 70, 71, 72, 145, 146, 147].includes(timer);
 
   return (
-    <div className="relative w-full h-full bg-[#F8FAFC] overflow-hidden flex flex-col font-sans border border-slate-200 rounded-2xl shadow-2xl select-none">
+    <div className="relative w-full h-full bg-[var(--ai-f8fafc)] overflow-hidden flex flex-col font-sans border border-slate-200 rounded-2xl shadow-2xl select-none">
       {/* Simulated Mouse */}
       <motion.div 
         animate={{ 
@@ -997,7 +997,7 @@ const RelationBuilderAnimation: React.FC = () => {
         </div>
 
         {/* Main Canvas */}
-        <div className="flex-1 relative bg-[#F8FAFC] p-4 overflow-hidden">
+        <div className="flex-1 relative bg-[var(--ai-f8fafc)] p-4 overflow-hidden">
           {/* Top Info Bar */}
           <div className="mb-6 flex items-center justify-between">
             <div className="flex flex-col gap-1">
@@ -1005,7 +1005,7 @@ const RelationBuilderAnimation: React.FC = () => {
               <span className="text-[7px] font-bold text-slate-400 max-w-md">데이터 그룹을 서로 연결해보세요. 항목 이름이 같고 해당 항목이 유효항목이면 자동으로 연결됩니다.</span>
             </div>
             <motion.button 
-              animate={{ backgroundColor: timer >= 135 ? '#4f46e5' : '#0f172a' }}
+              animate={{ backgroundColor: timer >= 135 ? 'var(--ai-4f46e5)' : 'var(--ai-0f172a)' }}
               className="px-4 py-1.5 text-white rounded-lg text-[9px] font-black flex items-center gap-2 shadow-lg shadow-slate-200"
             >
               <FileText size={12} /> 저장하기
@@ -1041,7 +1041,7 @@ const RelationBuilderAnimation: React.FC = () => {
           <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
             <defs>
               <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
-                <polygon points="0 0, 10 3.5, 0 7" fill="#6366f1" />
+                <polygon points="0 0, 10 3.5, 0 7" style={{ fill: 'var(--ai-6366f1)' }} />
               </marker>
               <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
                 <feGaussianBlur stdDeviation="2.5" result="blur" />
@@ -1053,7 +1053,7 @@ const RelationBuilderAnimation: React.FC = () => {
             {isDragging && (
               <motion.path 
                 d={`M 35% 48% C 45% 48%, 45% ${mousePos.y}, ${mousePos.x} ${mousePos.y}`}
-                stroke="#6366f1" strokeWidth="2" strokeDasharray="6,4" fill="none"
+                style={{ stroke: 'var(--ai-6366f1)' }} strokeWidth="2" strokeDasharray="6,4" fill="none"
               />
             )}
 
@@ -1064,7 +1064,7 @@ const RelationBuilderAnimation: React.FC = () => {
                 animate={{ pathLength: 1, opacity: 1 }}
                 transition={{ duration: 0.6, ease: "circOut" }}
                 d="M 35% 48% C 45% 48%, 45% 63%, 55% 63%" 
-                stroke="#6366f1" strokeWidth="2.5" fill="none"
+                style={{ stroke: 'var(--ai-6366f1)' }} strokeWidth="2.5" fill="none"
                 markerEnd="url(#arrowhead)"
                 filter="url(#glow)"
               />
@@ -1073,8 +1073,8 @@ const RelationBuilderAnimation: React.FC = () => {
             {/* Connection Nodes */}
             {(isDragging || isConnected) && (
               <>
-                <circle cx="35%" cy="48%" r="4" fill="#6366f1" className="animate-pulse" />
-                {isConnected && <circle cx="55%" cy="63%" r="4" fill="#6366f1" />}
+                <circle cx="35%" cy="48%" r="4" style={{ fill: 'var(--ai-6366f1)' }} className="animate-pulse" />
+                {isConnected && <circle cx="55%" cy="63%" r="4" style={{ fill: 'var(--ai-6366f1)' }} />}
               </>
             )}
           </svg>
@@ -1117,7 +1117,7 @@ const RelationBuilderAnimation: React.FC = () => {
             <motion.div 
               animate={{ 
                 scale: timer >= 20 && timer < 25 ? 0.95 : 1,
-                backgroundColor: timer >= 20 && timer < 25 ? '#f5f3ff' : 'rgba(255,255,255,0.3)'
+                backgroundColor: timer >= 20 && timer < 25 ? 'var(--ai-f5f3ff)' : 'rgba(255,255,255,0.3)'
               }}
               className={`w-44 h-56 rounded-xl border-2 border-dashed flex flex-col items-center justify-center gap-3 shrink-0 transition-all duration-300 ${timer >= 20 && timer < 25 ? 'border-indigo-400 shadow-inner' : 'border-slate-200'}`}
             >
